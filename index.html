@@ -21,11 +21,16 @@
   var dx = 1.5;
   var dy = -1.5;
   var ballRadius = 10;
+  var ballColor = "#0095DD"
+
+  function getRandomColor() {
+    ballColor = '#' + (0x1000000 + Math.floor(Math.random() * 0x1000000)).toString(16).substr(1);
+  }
 
   function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = ballColor;
     ctx.fill();
     ctx.closePath();
   }
@@ -38,10 +43,12 @@
 
     if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
       dy = -dy;
+      getRandomColor();
     }
 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
       dx = -dx;
+      getRandomColor();
     }
 
   }
